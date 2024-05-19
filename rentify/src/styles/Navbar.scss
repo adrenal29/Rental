@@ -1,0 +1,40 @@
+.top-bar {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-content {
+  display: flex;
+  align-items: center;
+}
+
+.company-name {
+  font-size: 34px;
+  margin-right: 20px;
+}
+
+.options a {
+  text-decoration: none;
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+.options a:hover {
+  
+}
+
+.toggle{
+  display: flex;
+  justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+  .company-name {
+    margin-right: 0;
+  }
+  
+  .right-content {
+    display: none;
+  }
+}

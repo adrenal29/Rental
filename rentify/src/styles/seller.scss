@@ -1,0 +1,64 @@
+.sellerDashboard{
+    display: flex;
+}
+.form-container {
+    margin: 0 auto;
+    width: 40vw;
+    margin-left: 20vw;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-container label {
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .form-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-container button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .form-container button:hover {
+    background-color: #0056b3;
+  }
+
+  
+  .property-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .property-table th,
+  .property-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  .property-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .property-table th:first-child,
+  .property-table td:first-child {
+    border-left: none;
+  }
+  
+  .property-table th:last-child,
+  .property-table td:last-child {
+    border-right: none;
+  }
+  
