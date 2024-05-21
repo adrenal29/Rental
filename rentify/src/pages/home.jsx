@@ -7,7 +7,7 @@ import axios from "axios";
 // import Listings from "../components/Listings"
 // import Footer from "../components/Footer"
 
-const HomePage = () => {
+const HomePage = ({user}) => {
   const [filters, setFilters] = useState({
     minRooms: 0,
     minBathrooms: 0,
@@ -18,7 +18,7 @@ const HomePage = () => {
   useEffect(() => {
     const user = localStorage.getItem("email");
     axios
-      .get("http://localhost:3001/getProperties", {})
+      .get("https://rental-kg16.onrender.com/getProperties", {})
       .then((result) => {
         setProperties(result.data);
         setFilteredProperties(result.data);
@@ -42,11 +42,11 @@ const HomePage = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user}/>
       <Slide />
       <h2>View Properties</h2>
       <h3 style={{ marginLeft: "10vw" }}>Apply Filters:</h3>
-      <div style={{ marginLeft: "10vw" ,display:"flex",justifyContent:"space-between", width:"80vw"}}>
+      <div style={{ marginLeft: "10vw" ,display:"flex",flexWrap:"wrap",justifyContent:"space-between", width:"80vw"}}>
         <div>
           <label htmlFor="minRooms">Minimum Rooms:</label>
           <input
@@ -79,7 +79,7 @@ const HomePage = () => {
         </div>
         <button onClick={applyFilters}>Apply Filters</button>
       </div>
-      <Properties properties={filteredProperties}/>
+      <Properties properties={filteredProperties} user={user}/>
     </>
   );
 };

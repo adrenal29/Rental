@@ -17,9 +17,9 @@ const Seller = () => {
 
   const handleEdit = (propertyId) => {
     setEditingPropertyId(propertyId);
-    // You can add more logic here for handling the edit action
   };
   const handleSave = (propertyId) => {
+    console.log(editedProperties)
     setEditingPropertyId(null);
     setEditedProperties({ ...editedProperties, [propertyId]: sellerProperties.find(property => property.id === propertyId) });
   };
@@ -38,7 +38,7 @@ const Seller = () => {
   useEffect(() => {
     const user = localStorage.getItem("email");
     axios
-      .get("http://localhost:3001/getSellerProperties", {
+      .get("https://rental-kg16.onrender.com/getSellerProperties", {
         params: { email: user },
   }).then((result) => {
         setSellerProperties(result.data);
@@ -51,7 +51,7 @@ const Seller = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3001/postProperty", {
+      .post("https://rental-kg16.onrender.com/postProperty", {
         email: user,
         price,
         place,
@@ -132,7 +132,7 @@ const Seller = () => {
           <>
              <div className="property-list-container">
       <h2>View your listed Properties</h2>
-      <table className="property-table">
+      <table className="property-table" >
         <thead>
           <tr>
             <th>Price</th>
@@ -141,16 +141,18 @@ const Seller = () => {
             <th>Number of Rooms</th>
             <th>Schools Nearby</th>
             <th>Action</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
           {sellerProperties.map((property, index) => (
             <tr key={index}>
               <td>
-                {editingPropertyId === property.id ? (
+                {editingPropertyId === property._id ? (
                   <input
                     type="text"
-                    value={editedProperties[property.id]?.price || property.price}
+                    value={editedProperties[property.id]?.price }
+                    placeholder={property.price}
                     onChange={(e) => handleInputChange(property.id, 'price', e.target.value)}
                   />
                 ) : (
@@ -158,10 +160,11 @@ const Seller = () => {
                 )}
               </td>
               <td>
-                {editingPropertyId === property.id ? (
+                {editingPropertyId === property._id ? (
                   <input
                     type="text"
-                    value={editedProperties[property.id]?.place || property.place}
+                    value={editedProperties[property._id]?.place }
+                    placeholder={property.place}
                     onChange={(e) => handleInputChange(property.id, 'place', e.target.value)}
                   />
                 ) : (
@@ -169,10 +172,11 @@ const Seller = () => {
                 )}
               </td>
               <td>
-                {editingPropertyId === property.id ? (
+                {editingPropertyId === property._id ? (
                   <input
                     type="text"
-                    value={editedProperties[property.id]?.numBathrooms || property.numBathrooms}
+                    value={editedProperties[property._id]?.numBathrooms }
+                    placeholder={property.numBathrooms}
                     onChange={(e) => handleInputChange(property.id, 'numBathrooms', e.target.value)}
                   />
                 ) : (
@@ -180,10 +184,11 @@ const Seller = () => {
                 )}
               </td>
               <td>
-                {editingPropertyId === property.id ? (
+                {editingPropertyId === property._id ? (
                   <input
                     type="text"
-                    value={editedProperties[property.id]?.numRooms || property.numRooms}
+                    value={editedProperties[property._id]?.numRooms}
+                    placeholder={property.numRooms}
                     onChange={(e) => handleInputChange(property.id, 'numRooms', e.target.value)}
                   />
                 ) : (
@@ -191,26 +196,27 @@ const Seller = () => {
                 )}
               </td>
               <td>
-                {editingPropertyId === property.id ? (
+                {editingPropertyId === property._id ? (
                   <input
                     type="text"
-                    value={editedProperties[property.id]?.schoolsNearby || property.schoolsNearby}
-                    onChange={(e) => handleInputChange(property.id, 'schoolsNearby', e.target.value)}
+                    value={editedProperties[property._id]?.schoolsNearby }
+                    placeholder={property.schoolsNearby}
+                    onChange={(e) => handleInputChange(property._id, 'schoolsNearby', e.target.value)}
                   />
                 ) : (
                   property.schoolsNearby
                 )}
               </td>
               <td>
-                {editingPropertyId === property.id ? (
-                  <button onClick={() => handleSave(property.id)}>Save</button>
+                {editingPropertyId === property._id ? (
+                  <button onClick={() => handleSave(property._id)}>Save</button>
                 ) : (
-                  <button onClick={() => handleEdit(property.id)}>Edit</button>
+                  <button onClick={() => handleEdit(property._id)}>Edit</button>
                   
                 )}
               </td>
               <td>
-              <button onClick={() => handleDelete(property.id)}>Delete</button>
+              <button onClick={() => handleDelete(property._id)}>Delete</button>
               </td>
             </tr>
           ))}

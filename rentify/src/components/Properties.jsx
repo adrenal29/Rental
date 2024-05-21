@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Popover } from 'react-tiny-popover'
 
-const Properties = ({properties}) => {
+const Properties = ({properties,user}) => {
   const [isPopoverOpen,setIsPopoverOpen]=useState(false)
   const [showId,setId]=useState(null)
+  const [isLaptop, setIsLaptop] = useState(window.innerWidth >= 768);
+
+  // Update state on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLaptop(window.innerWidth >= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const show=(id)=>{
+    if(!user){
+    window.location.href="/login"
+    return;
+    }
     setIsPopoverOpen(!isPopoverOpen)
     setId(id)
     alert("Details sent to email")
@@ -14,8 +29,8 @@ const Properties = ({properties}) => {
   return <div style={{display:"flex",marginLeft:"5vw",flexWrap:"wrap"}}>{properties.map((property) => {
     return (
         <>
-      <div style={{border:"1px solid black",display:"flex",marginLeft:"10px",marginTop:"10px",flexDirection:"column",maxWidth:"20vw",minWidth:"20vw"}}>
-        <img src="../../public/assets/home.jpg" style={{height:"160px",width:"180px",marginLeft:"20%"}}></img>
+      <div style={{border:"1px solid black",display:"flex",marginLeft:"10px",marginTop:"10px",flexDirection:"column",  ...(isLaptop ? { maxWidth: '22vw' } : {}),}}>
+        <img src="../../public/assets/home.jpg" style={{height:"60%",width:"60%",marginLeft:"20%"}}></img>
         <div style={{textAlign:"left",paddingLeft:"20%"}}>
         <h3>Property Price{" "}Rs{property.price}</h3>
         <h3>Property Location{" "}{property.place}</h3>

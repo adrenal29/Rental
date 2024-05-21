@@ -17,6 +17,11 @@ const SellerSideBar = ({setOption}) => {
             View Properties
           </button>
         </li>
+        <li>
+          <button onClick={() =>{window.location.href="/"}}>
+           Home
+          </button>
+        </li>
       </ul>
     </div>
   );

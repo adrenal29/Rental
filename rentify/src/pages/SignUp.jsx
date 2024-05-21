@@ -14,7 +14,7 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/register", { name, email, password ,userType:isSeller==true?"seller":"buyer"})
+      .post("https://rental-kg16.onrender.com/register", { name, email, password ,userType:isSeller==true?"seller":"buyer"})
       .then((result) => {
         console.log(result);
         navigate("/login");
