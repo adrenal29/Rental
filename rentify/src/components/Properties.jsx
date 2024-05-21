@@ -29,8 +29,8 @@ const Properties = ({properties,user}) => {
   return <div style={{display:"flex",marginLeft:"5vw",flexWrap:"wrap"}}>{properties.map((property) => {
     return (
         <>
-      <div style={{border:"1px solid black",display:"flex",marginLeft:"10px",marginTop:"10px",flexDirection:"column",  ...(isLaptop ? { maxWidth: '22vw' } : {}),}}>
-        <img src="../../public/assets/home.jpg" style={{height:"60%",width:"60%",marginLeft:"20%"}}></img>
+      <div style={{border:"1px solid black",display:"flex",marginLeft:"10px",marginTop:"10px",flexDirection:"column",  minWidth:"20vw",...(isLaptop ? { maxWidth: '22vw' } : {}),}}>
+        <img src="https://tse1.mm.bing.net/th?id=OIP.7IOOK8MFeX7SErZsLIXrDwHaHa&pid=Api&rs=1&c=1&qlt=95&w=121&h=121" style={{height:"60%",width:"60%",marginLeft:"20%"}}></img>
         <div style={{textAlign:"left",paddingLeft:"20%"}}>
         <h3>Property Price{" "}Rs{property.price}</h3>
         <h3>Property Location{" "}{property.place}</h3>
